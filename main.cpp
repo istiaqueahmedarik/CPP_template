@@ -1,7 +1,7 @@
 /*******************************************
  |I|s|t|i|a|q|u|e| |A|h|m|e|d| |A|r|i|k|
 ********************************************/
-#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC optimize("O3")
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
