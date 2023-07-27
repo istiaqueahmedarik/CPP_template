@@ -96,8 +96,14 @@ void _print(T t, V... v)
 /*  void all_subset(vector<int>&arr,int n){for (int i = 0; i < (1 << n); i++){for (int j = 0; j < n; j++){if (i & (1 << j))cout << arr[j] << " ";}cout << endl;}} void clr_last(int &N,int i){N = (N & ~(1<<(i+1) - 1));} void clr_first(int &N,int i){N = (N & (1<<(i+1) - 1));} int ith_bit(int n,int i){return (n >> i) & 1;} void set(int &n,int i){n |= (1<<i);} void clr(int &n,int i){n &= ~(1 << i);} void toggle(int &n,int i){n ^= ( 1<< i );}*/
 // Number_Theory
 /*int bigPow(int x, int n) { int res = 1;while (n){if (n & 1)res *= x;x *= x;n >>= 1;}return res;} vector<int> primes,lp(1000000, 0), hp(1000000, 0);vector<bool> sieve(1000000, true); void generatePrimes(int n) {sieve[0] = sieve[1] = false;for(int i = 2; i * i <= n; i++){if (sieve[i]){lp[i] = hp[i] = i;for (int j = i * i; j <= n; j += i){sieve[j] = false;hp[j] = i;
-if (lp[j] == 0)lp[j] = i;}}}for (int i = 2; i <= n; i++){if (sieve[i]){primes.push_back(i);}}}map<int,int> prime_factor(int x){//generate prime firstmap<int, int> mp;while (x > 1){int prime_factor = hp[x];while (x % prime_factor == 0){mp[prime_factor]++;x /= prime_factor;}}return mp;}
+if (lp[j] == 0)lp[j] = i;}}}for (int i = 2; i <= n; i++){if (sieve[i]){primes.push_back(i);}}}map<int,int> prime_factor(int x){//generate prime firstmap<int, int> mp;while (x > 1){int prime_factor = hp[x];while (x % prime_factor == 0){mp[prime_factor]++;x /= prime_factor;}}return mp;}}
  */
+// logn fobonacci
+/*
+vector<vector<int>> identityMatrix({{1, 0},{0, 1}});vector<vector<int>> result({{0, 0},{0, 0}});void multiply(vector<vector<int>> a, vector<vector<int>> b){for(auto &i : result){for(auto &j : i){
+j = 0;}} for(int i = 0; i < 2; i++){for(int j = 0; j < 2; j++){for(int k = 0; k < 2; k++){result[i][k] += a[i][j] * b[j][k];
+result[i][k] %= MOD;}}}}void matrixExpo(vector<vector<int>> matrix, int n){if(n == 0){result = identityMatrix;return;}    matrixExpo(matrix, n / 2);multiply(result, result);if(n & 1){multiply(result, matrix);}} int nthFibonacciNumber(int n){if(n <= 1) return n;vector<vector<int>> baseMatrix({{1, 1},{1, 0}});multiply(baseMatrix, identityMatrix);matrixExpo(baseMatrix, n - 1);return result[0][0];}
+*/
 
 void solve()
 {
