@@ -1,13 +1,18 @@
 /*******************************************
  |I|s|t|i|a|q|u|e| |A|h|m|e|d| |A|r|i|k|
 ********************************************/
+#pragma GCC optimize("O3,unroll-loops")
 #include <bits/stdc++.h>
-#pragma GCC optimize("O3")
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 using namespace std;
+using namespace __gnu_pbds;
 void __print(int x) { cerr << x; }
 #define int long long
 #define pi acos(-1)
 #define endl '\n'
+#define set_bits __builtin_popcountll
+#define all(x) (x).begin(), (x).end()
 #define IOS                  \
     ios::sync_with_stdio(0); \
     cin.tie(0);              \
@@ -15,7 +20,8 @@ void __print(int x) { cerr << x; }
 #define FileIO                        \
     freopen("input.txt", "r", stdin); \
     freopen("output.txt", "w", stdout)
-
+/// decltype and const
+const int MOD = 1e9 + 7, dx[] = {1, 0, -1, 0, 1, -1, -1, 1}, dy[] = {0, 1, 0, -1, 1, 1, -1, -1};
 /// debug
 struct _
 {
@@ -76,9 +82,6 @@ void _print(T t, V... v)
 #endif
 
 /// PBDS
-// #include <ext/pb_ds/assoc_container.hpp>
-// #include <ext/pb_ds/tree_policy.hpp>
-// using namespace __gnu_pbds;
 // template <typename T>
 // using o_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
 // template <typename T>
@@ -87,9 +90,6 @@ void _print(T t, V... v)
 // using o_multiset = tree<T, null_type, less_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
 // template <typename T>
 // using o_multiset_g = tree<T, null_type, greater_equal<T>, rb_tree_tag, tree_order_statistics_node_update>;
-
-/// decltype and const
-const int MOD = 1e9 + 7, dx[] = {1, 0, -1, 0, 1, -1, -1, 1}, dy[] = {0, 1, 0, -1, 1, 1, -1, -1};
 
 /// useful function
 // bitmask
