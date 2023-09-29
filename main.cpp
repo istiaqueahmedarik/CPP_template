@@ -103,30 +103,64 @@ if (lp[j] == 0)lp[j] = i;}}}for (int i = 2; i <= n; i++){if (sieve[i]){primes.pu
 vector<vector<int>> identityMatrix({{1, 0},{0, 1}});vector<vector<int>> result({{0, 0},{0, 0}});void multiply(vector<vector<int>> a, vector<vector<int>> b){for(auto &i : result){for(auto &j : i){j = 0;}} for(int i = 0; i < 2; i++){for(int j = 0; j < 2; j++){for(int k = 0; k < 2; k++){result[i][k] += a[i][j] * b[j][k];result[i][k] %= MOD;}}}}void matrixExpo(vector<vector<int>> matrix, int n){if(n == 0){result = identityMatrix;return;}matrixExpo(matrix, n / 2);multiply(result, result);if(n & 1){multiply(result, matrix);}} int nthFibonacciNumber(int n){if(n <= 1) return n;vector<vector<int>> baseMatrix({{1, 1},{1, 0}});multiply(baseMatrix, identityMatrix);matrixExpo(baseMatrix, n - 1);return result[0][0];}
 */
 
-// struct mint {
-//   int x;
-//   mint(int x=0):x((x%MOD+MOD)%MOD){}
-//   mint& operator+=(const mint a) {if ((x += a.x) >= MOD) x -= MOD;return *this;}
-//   mint& operator-=(const mint a) {if ((x += MOD-a.x) >= MOD) x -= MOD;return *this;}
-//   mint& operator*=(const mint a) {(x *= a.x) %= MOD;return *this;}
-//   mint operator+(const mint a) const {mint res(*this);return res+=a;}
-//   mint operator-(const mint a) const {mint res(*this);return res-=a;}
-//   mint operator*(const mint a) const {mint res(*this);return res*=a;}
-//   mint pow(int b) const {
-//     mint res(1), a(*this);
-//     while (b) {
-//       if (b & 1) res *= a;
-//       a *= a;
-//       b >>= 1;
-//     }
-//     return res;
-//   }
-//   // for prime MOD
-//   mint inv() const {return pow(MOD-2);}
-//   mint& operator/=(const mint a) {return (*this) *= a.inv();}
-//   mint operator/(const mint a) const {mint res(*this);return res/=a;}
-// };
-// ostream& operator<<(ostream& os, const mint& a) {os << a.x; return os;}
+template <int32_t MOD>
+struct mint
+{
+    int32_t value;
+    mint() : value() {}
+    mint(int64_t value_) : value(value_ < 0 ? value_ % MOD + MOD : value_ >= MOD ? value_ % MOD
+                                                                                 : value_) {}
+    mint(int32_t value_, std::nullptr_t) : value(value_) {}
+    explicit operator bool() const { return value; }
+    inline mint<MOD> operator+(mint<MOD> other) const { return mint<MOD>(*this) += other; }
+    inline mint<MOD> operator-(mint<MOD> other) const { return mint<MOD>(*this) -= other; }
+    inline mint<MOD> operator*(mint<MOD> other) const { return mint<MOD>(*this) *= other; }
+    inline mint<MOD> &operator+=(mint<MOD> other)
+    {
+        this->value += other.value;
+        if (this->value >= MOD)
+            this->value -= MOD;
+        return *this;
+    }
+    inline mint<MOD> &operator-=(mint<MOD> other)
+    {
+        this->value -= other.value;
+        if (this->value < 0)
+            this->value += MOD;
+        return *this;
+    }
+    inline mint<MOD> &operator*=(mint<MOD> other)
+    {
+        this->value = (uint_fast64_t)this->value * other.value % MOD;
+        return *this;
+    }
+    inline mint<MOD> operator-() const { return mint<MOD>(this->value ? MOD - this->value : 0, nullptr); }
+    inline bool operator==(mint<MOD> other) const { return value == other.value; }
+    inline bool operator!=(mint<MOD> other) const { return value != other.value; }
+    inline mint<MOD> pow(uint64_t k) const { return mint<MOD>(modpow(value, k, MOD), nullptr); }
+    inline mint<MOD> inv() const { return mint<MOD>(modinv(value, MOD), nullptr); }
+    inline mint<MOD> operator/(mint<MOD> other) const { return *this * other.inv(); }
+    inline mint<MOD> &operator/=(mint<MOD> other) { return *this *= other.inv(); }
+};
+template <int32_t MOD>
+mint<MOD> operator+(int64_t value, mint<MOD> n) { return mint<MOD>(value) + n; }
+template <int32_t MOD>
+mint<MOD> operator-(int64_t value, mint<MOD> n) { return mint<MOD>(value) - n; }
+template <int32_t MOD>
+mint<MOD> operator*(int64_t value, mint<MOD> n) { return mint<MOD>(value) * n; }
+template <int32_t MOD>
+mint<MOD> operator/(int64_t value, mint<MOD> n) { return mint<MOD>(value) / n; }
+template <int32_t MOD>
+std::istream &operator>>(std::istream &in, mint<MOD> &n)
+{
+    int64_t value;
+    in >> value;
+    n = value;
+    return in;
+}
+template <int32_t MOD>
+std::ostream &operator<<(std::ostream &out, mint<MOD> n) { return out << n.value; }
+
 void solve()
 {
 }
