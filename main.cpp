@@ -102,6 +102,31 @@ if (lp[j] == 0)lp[j] = i;}}}for (int i = 2; i <= n; i++){if (sieve[i]){primes.pu
 /*
 vector<vector<int>> identityMatrix({{1, 0},{0, 1}});vector<vector<int>> result({{0, 0},{0, 0}});void multiply(vector<vector<int>> a, vector<vector<int>> b){for(auto &i : result){for(auto &j : i){j = 0;}} for(int i = 0; i < 2; i++){for(int j = 0; j < 2; j++){for(int k = 0; k < 2; k++){result[i][k] += a[i][j] * b[j][k];result[i][k] %= MOD;}}}}void matrixExpo(vector<vector<int>> matrix, int n){if(n == 0){result = identityMatrix;return;}matrixExpo(matrix, n / 2);multiply(result, result);if(n & 1){multiply(result, matrix);}} int nthFibonacciNumber(int n){if(n <= 1) return n;vector<vector<int>> baseMatrix({{1, 1},{1, 0}});multiply(baseMatrix, identityMatrix);matrixExpo(baseMatrix, n - 1);return result[0][0];}
 */
+
+// struct mint {
+//   int x;
+//   mint(int x=0):x((x%MOD+MOD)%MOD){}
+//   mint& operator+=(const mint a) {if ((x += a.x) >= MOD) x -= MOD;return *this;}
+//   mint& operator-=(const mint a) {if ((x += MOD-a.x) >= MOD) x -= MOD;return *this;}
+//   mint& operator*=(const mint a) {(x *= a.x) %= MOD;return *this;}
+//   mint operator+(const mint a) const {mint res(*this);return res+=a;}
+//   mint operator-(const mint a) const {mint res(*this);return res-=a;}
+//   mint operator*(const mint a) const {mint res(*this);return res*=a;}
+//   mint pow(int b) const {
+//     mint res(1), a(*this);
+//     while (b) {
+//       if (b & 1) res *= a;
+//       a *= a;
+//       b >>= 1;
+//     }
+//     return res;
+//   }
+//   // for prime MOD
+//   mint inv() const {return pow(MOD-2);}
+//   mint& operator/=(const mint a) {return (*this) *= a.inv();}
+//   mint operator/(const mint a) const {mint res(*this);return res/=a;}
+// };
+// ostream& operator<<(ostream& os, const mint& a) {os << a.x; return os;}
 void solve()
 {
 }
